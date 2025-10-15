@@ -4,10 +4,13 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
+ 
 const DEFAULT_AVATAR = "https://via.placeholder.com/40";
 
 const Feed = () => {
+   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [text, setText] = useState("");
@@ -27,6 +30,7 @@ const Feed = () => {
 
   const user = JSON.parse(localStorage.getItem("user") || "null");
   const token = localStorage.getItem("token");
+  
 
   const hasLiked = (likes) => {
     if (!likes || !user) return false;
@@ -701,30 +705,41 @@ const allComments = (post.comments || []).sort(
               </div>
 
               <div className="overflow-auto max-h-72">
-                {likesModal.likes && likesModal.likes.length > 0 ? (
-                  likesModal.likes.map((u) => {
-                    const id = u?._id || u?.id || u;
-                    const name = u?.username || u?.name || "User";
-                    const pic = u?.profilePic || DEFAULT_AVATAR;
-                    return (
-                      <div key={id} className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50">
-                        <img
-                          src={pic}
-                          alt={name}
-                          className="object-cover w-10 h-10 rounded-full"
-                          onError={(e) => (e.currentTarget.src = DEFAULT_AVATAR)}
-                        />
-                        <div className="flex-1">
-                          <div className="text-sm font-medium text-gray-800">{name}</div>
-                        </div>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <div className="p-4 text-sm text-gray-500">No likes yet</div>
-                )}
-              </div>
-            </motion.div>
+  {likesModal.likes && likesModal.likes.length > 0 ? (
+  likesModal.likes.map((u) => {
+    const id = u?._id || u?.id || u;
+    const name = u?.username || u?.name || "User";
+    const pic = u?.profilePic || DEFAULT_AVATAR;
+
+    return (
+      <div
+        key={id}
+        className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-50"
+        onClick={() => {
+          navigate(`/profile/${id}`);
+          closeLikesModal();
+        }}
+      >
+        <img
+          src={pic}
+          alt={name}
+          className="object-cover w-10 h-10 rounded-full"
+          onError={(e) => (e.currentTarget.src = DEFAULT_AVATAR)}
+        />
+        <div className="flex-1">
+          <div className="text-sm font-medium text-gray-800">{name}</div>
+        </div>
+      </div>
+    );
+  })
+) : (
+  <div className="p-4 text-sm text-gray-500">No likes yet</div>
+)}
+
+</div>
+
+            </motion.div> 
+            
           </motion.div>
         )}
       </AnimatePresence>
