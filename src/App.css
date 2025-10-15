@@ -1,0 +1,81 @@
+/* Container styling */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1508780709619-79562169bc64") no-repeat center center/cover;
+
+  font-family: Arial, sans-serif;
+}
+
+/* Login form box */
+.login-form {
+  background: #9ab3f7;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+  width: 350px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Title */
+.login-form h2 {
+  margin-bottom: 15px;
+  color: #b52ca5;
+  font-style: italic;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+/* Input fields */
+.login-form input {
+  display: block;          
+  width: 100%;             
+  box-sizing: border-box;  
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+
+.login-form input:focus {
+  border-color: #667eea;
+  outline: none;
+  box-shadow: 0px 0px 8px rgba(102, 126, 234, 0.4);
+}
+
+/* Button */
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #667eea;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-form button:hover {
+  background: #5a67d8;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
