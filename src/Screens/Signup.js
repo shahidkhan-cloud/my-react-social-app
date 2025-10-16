@@ -36,7 +36,7 @@ const Signup = () => {
       console.log("✅ Cloudinary uploaded:", profilePic);
 
       // ✅ Step 2: Send signup data to backend
-      const res = await axios.post("http://localhost:5000/api/auth/signup", {
+      const res = await axios.post("https://my-react-social-app-backend.vercel.com/api/auth/signup", {
         username,
         bio,
         password,
