@@ -89,7 +89,7 @@ const Feed = () => {
     if (!user) return toast.error("Please login first ❌");
     try {
       const res = await axios.post(
-        `https://my-react-social-app-backend.vercel.com/api/posts/comment/${commentId}/like`,
+        `https://my-react-social-app-backend.vercel.app/api/posts/comment/${commentId}/like`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -111,7 +111,7 @@ const Feed = () => {
     if (!user) return toast.error("Please login first ❌");
     try {
       const res = await axios.post(
-        `https://my-react-social-app-backend.vercel.com/api/replies/${replyId}/like`,
+        `https://my-react-social-app-backend.vercel.app/api/replies/${replyId}/like`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -133,7 +133,7 @@ const Feed = () => {
     if (!t?.trim()) return toast.error("Comment cannot be empty!");
     try {
       const res = await axios.post(
-        `https://my-react-social-app-backend.vercel.com/api/posts/${postId}/comment`,
+        `https://my-react-social-app-backend.vercel.app/api/posts/${postId}/comment`,
         { text: t },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -153,7 +153,7 @@ const Feed = () => {
     if (!t?.trim()) return toast.error("Reply cannot be empty!");
     try {
       const res = await axios.post(
-        `https://my-react-social-app-backend.vercel.com/api/replies/${commentId}/create`,
+        `https://my-react-social-app-backend.vercel.app/api/replies/${commentId}/create`,
         { text: t },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -173,7 +173,7 @@ const Feed = () => {
       setOpenReplies((prev) => ({ ...prev, [commentId]: null }));
     } else {
       try {
-        const res = await axios.get(`https://my-react-social-app-backend.vercel.com/api/replies/${commentId}`);
+        const res = await axios.get(`https://my-react-social-app-backend.vercel.app/api/replies/${commentId}`);
         setOpenReplies((prev) => ({ ...prev, [commentId]: res.data }));
       } catch (err) {
         console.error(err);
