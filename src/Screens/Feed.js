@@ -195,8 +195,7 @@ const Feed = () => {
           const formData = new FormData();
           formData.append("file", file);
           formData.append("upload_preset", "ml_default");
-          const cloudRes = await axios.post(
-            "https://api.cloudinary.com/v1_1/ddxuael58/image/upload",
+          const cloudRes = await axios.post("https://api.cloudinary.com/v1_1/ddxuael58/image/upload",
             formData
           );
           return cloudRes.data.secure_url;
@@ -204,7 +203,7 @@ const Feed = () => {
         images = await Promise.all(uploadPromises);
       }
       await axios.post(
-        "POST https://my-react-social-app-backend.vercel.com/api/posts/create",
+        "https://my-react-social-app-backend.vercel.com/api/posts/create",
         { text, images },
         { headers: { Authorization: `Bearer ${token}` } }
       );
