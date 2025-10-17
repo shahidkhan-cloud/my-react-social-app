@@ -204,7 +204,7 @@ const Feed = () => {
         images = await Promise.all(uploadPromises);
       }
       await axios.post(
-        "https://my-react-social-app-backend.vercel.com/api/posts/create",
+        "POST https://my-react-social-app-backend.vercel.com/api/posts/create",
         { text, images },
         { headers: { Authorization: `Bearer ${token}` } }
       );
