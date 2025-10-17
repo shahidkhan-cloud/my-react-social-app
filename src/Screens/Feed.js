@@ -203,11 +203,12 @@ const Feed = () => {
         });
         images = await Promise.all(uploadPromises);
       }
-      await axios.post(
-        "POST https://my-react-social-app-backend.vercel.com/api/posts/create",
-        { text, images },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+     await axios.post(
+  "https://my-react-social-app-backend.vercel.app/api/posts/create",
+  { text, images },
+  { headers: { Authorization: `Bearer ${token}` } }
+);
+
       toast.success("Post uploaded ✅");
       setText("");
       setFiles([]);
