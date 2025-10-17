@@ -20,7 +20,8 @@ const Login = () => {
       setLoading(true);
 
       // ✅ API call to backend login route
-      const res = await axios.post("https://my-react-social-app-backend.vercel.app/api/auth/login", {
+      const res = await axios.post("https://my-react-social-app-backend.vercel.app/api/auth/login",
+         {
         username,
         password,
       });
