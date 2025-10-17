@@ -43,7 +43,7 @@ const Feed = () => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("https://my-react-social-app-backend.vercel.com/api/posts");
+      const res = await axios.get("https://my-react-social-app-backend.vercel.app/api/posts");
       setPosts(res.data);
     } catch (err) {
       console.error(err);
@@ -72,7 +72,7 @@ const Feed = () => {
 
     try {
       const res = await axios.post(
-        `https://my-react-social-app-backend.vercel.com/api/posts/${postId}/like`,
+        `https://my-react-social-app-backend.vercel.app/api/posts/${postId}/like`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

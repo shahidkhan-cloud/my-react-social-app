@@ -61,8 +61,8 @@ const Profile = () => {
       try {
         setLoading(true);
         const [userRes, postsRes] = await Promise.all([
-          axios.get(`http://localhost:5000/api/users/${finalUserId}`, { headers }),
-          axios.get(`http://localhost:5000/api/posts/user/${finalUserId}`, { headers }),
+          axios.get(`https://my-react-social-app-backend.vercel.app/api/users/${finalUserId}`, { headers }),
+          axios.get(`https://my-react-social-app-backend.vercel.app/api/posts/user/${finalUserId}`, { headers }),
         ]);
         setUser(userRes.data);
         setPosts(postsRes.data);
@@ -82,7 +82,7 @@ const Profile = () => {
     if (newBio === null) return;
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/users/${finalUserId}`,
+        `https://my-react-social-app-backend.vercel.app/api/users/${finalUserId}`,
         { bio: newBio },
         { headers }
       );
@@ -109,7 +109,7 @@ const Profile = () => {
       );
       const imageUrl = uploadRes.data.secure_url;
       const res = await axios.put(
-        `http://localhost:5000/api/users/${finalUserId}`,
+        `https://my-react-social-app-backend.vercel.app/api/users/${finalUserId}`,
         { profilePic: imageUrl },
         { headers }
       );
@@ -127,7 +127,7 @@ const Profile = () => {
   const handleDeleteProfile = async () => {
     if (!window.confirm("Are you sure you want to delete your profile?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/users/${finalUserId}`, { headers });
+      await axios.delete(`https://my-react-social-app-backend.vercel.app/api/users/${finalUserId}`, { headers });
       localStorage.clear();
       toast.success("Profile deleted ✅");
       navigate("/login");
@@ -146,7 +146,7 @@ const Profile = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/posts/${postId}/like`,
+        `https://my-react-social-app-backend.vercel.app/api/posts/${postId}/like`,
         {},
         { headers }
       );
@@ -165,7 +165,7 @@ const Profile = () => {
     if (!newText || newText === oldText) return;
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/posts/${postId}`,
+        `https://my-react-social-app-backend.vercel.app/api/posts/${postId}`,
         { text: newText },
         { headers }
       );
@@ -199,7 +199,7 @@ const Profile = () => {
 
     // Update post with new images
     const res = await axios.put(
-      `http://localhost:5000/api/posts/${postId}`,
+      `https://my-react-social-app-backend.vercel.app/api/posts/${postId}`,
       { images: uploadedUrls }, // replace or merge depending on your backend
       { headers }
     );
@@ -231,7 +231,7 @@ const Profile = () => {
   const handleDeletePost = async (postId) => {
     if (!window.confirm("Delete this post?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${postId}`, { headers });
+      await axios.delete(`https://my-react-social-app-backend.vercel.app/api/posts/${postId}`, { headers });
       setPosts((prev) => prev.filter((p) => p._id !== postId));
       toast.success("Post deleted ✅");
     } catch {
@@ -245,7 +245,7 @@ const Profile = () => {
     if (!text?.trim()) return toast.error("Comment cannot be empty!");
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/posts/${postId}/comment`,
+        `https://my-react-social-app-backend.vercel.app/api/posts/${postId}/comment`,
         { text },
         { headers }
       );
@@ -262,7 +262,7 @@ const Profile = () => {
 
   const handleDeleteComment = async (postId, commentId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/comments/${commentId}`, { headers });
+      await axios.delete(`https://my-react-social-app-backend.vercel.app/api/comments/${commentId}`, { headers });
       setPosts((prev) =>
         prev.map((p) =>
           p._id === postId
@@ -281,7 +281,7 @@ const Profile = () => {
     if (!text?.trim()) return toast.error("Reply cannot be empty!");
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/replies/${commentId}/create`,
+        `https://my-react-social-app-backend.vercel.app/api/replies/${commentId}/create`,
         { text },
         { headers }
       );
@@ -300,7 +300,7 @@ const Profile = () => {
       setOpenReplies((prev) => ({ ...prev, [commentId]: null }));
     } else {
       try {
-        const res = await axios.get(`http://localhost:5000/api/replies/${commentId}`);
+        const res = await axios.get(`https://my-react-social-app-backend.vercel.app/api/replies/${commentId}`);
         setOpenReplies((prev) => ({ ...prev, [commentId]: res.data }));
       } catch {
         toast.error("Failed to load replies ❌");
@@ -310,7 +310,7 @@ const Profile = () => {
 
   const handleDeleteReply = async (commentId, replyId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/replies/${replyId}`, { headers });
+      await axios.delete(`https://my-react-social-app-backend.vercel.app/api/replies/${replyId}`, { headers });
       setOpenReplies((prev) => ({
         ...prev,
         [commentId]: prev[commentId]?.filter((r) => r._id !== replyId),
@@ -327,7 +327,7 @@ const handleLikeComment = async (commentId, postId) => {
   if (!user) return toast.error("Please login first ❌");
   try {
     const res = await axios.post(
-  `http://localhost:5000/api/posts/comment/${commentId}/like`,
+  `https://my-react-social-app-backend.vercel.app/api/posts/comment/${commentId}/like`,
   {},
   { headers: { Authorization: `Bearer ${token}` } }
 );
@@ -365,7 +365,7 @@ const handleLikeReply = async (replyId, commentId) => {
   if (!user) return toast.error("Please login first ❌");
   try {
     const res = await axios.post(
-      `http://localhost:5000/api/replies/${replyId}/like`,
+      `https://my-react-social-app-backend.vercel.app/api/replies/${replyId}/like`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
