@@ -32,7 +32,7 @@ const Login = () => {
       toast.success("Login successful ✅");
 
       // ✅ Redirect to Feed
-      navigate("/Feed");
+     setTimeout(() => navigate("/feed"), 1000);
     } catch (err) {
       console.error("❌ Login Error:", err);
       toast.error(err.response?.data?.message || "Login failed ❌");
