@@ -3,9 +3,8 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
  
 const DEFAULT_AVATAR = "https://via.placeholder.com/40";
 
@@ -271,6 +270,16 @@ const Feed = () => {
       {/* Header */}
       <header className="flex items-center justify-between max-w-2xl px-5 py-3 mx-auto bg-white shadow-md rounded-b-2xl">
         <h1 className="text-xl font-bold text-blue-600">Feed</h1>
+         <div className="flex items-center gap-3">
+    {/* Message Button */}
+    <button
+      onClick={() => navigate("/chat")}
+      className="p-2 text-blue-500 rounded-full hover:bg-blue-100"
+      title="Messages"
+    >
+      <MessageCircle size={24} />
+    </button>
+
         {user ? (
           <Link
             to={`/profile/${user.id}`}
@@ -291,6 +300,8 @@ const Feed = () => {
             Login
           </Link>
         )}
+
+    </div>
       </header>
 
       {/* Create Post */}

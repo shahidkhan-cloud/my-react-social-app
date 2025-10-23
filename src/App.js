@@ -4,6 +4,7 @@ import Signup from "./Screens/Signup";
 import Login from "./Screens/Login";
 import Feed from "./Screens/Feed";
 import Profile from "./Screens/Profile";
+import Chat from "./Screens/Chat";
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+         <Route path="/" element={<Feed />} />
+  <Route path="/chat" element={<Chat username={user?.username || "Guest"} />} />
 
         {/* Private Routes */}
         <Route path="/feed" element={user ? <Feed /> : <Navigate to="/login" />} />
